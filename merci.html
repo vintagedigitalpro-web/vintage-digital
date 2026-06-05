@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merci pour votre demande — Vintage Digital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        .thankyou-container {
+            max-width: 600px;
+            margin: 150px auto 60px auto;
+            padding: 50px 40px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow: var(--glass-shadow);
+            text-align: center;
+        }
+        .success-icon {
+            background: rgba(30, 185, 129, 0.08);
+            border: 1px solid rgba(30, 185, 129, 0.2);
+            color: var(--color-emerald);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px auto;
+            animation: pulseSuccess 2s infinite;
+        }
+        @keyframes pulseSuccess {
+            0% { box-shadow: 0 0 0 0 rgba(30, 185, 129, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(30, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(30, 185, 129, 0); }
+        }
+        .thankyou-title {
+            font-size: 2rem;
+            color: var(--color-slate-dark);
+            margin-bottom: 15px;
+        }
+        .thankyou-text {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 35px;
+        }
+        .action-box {
+            background: rgba(217, 167, 74, 0.03);
+            border: 1px dashed rgba(217, 167, 74, 0.25);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 35px;
+        }
+        .action-box h3 {
+            font-size: 1.15rem;
+            color: var(--color-slate-dark);
+            margin-bottom: 10px;
+        }
+        .action-box p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+        @media (min-width: 576px) {
+            .button-group {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header class="main-header">
+        <div class="container header-container">
+            <a href="index.html" class="logo flex items-center">
+                <img src="logo.png" alt="Vintage Digital Logo" class="header-logo">
+                <div class="logo-text">
+                    <span class="logo-brand"><span class="logo-accent">V</span>intage <span class="logo-sub">Digital</span></span>
+                </div>
+            </a>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link">Retour à l'accueil</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <main class="thankyou-container">
+            <div class="success-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            
+            <h1 class="thankyou-title">Demande bien reçue !</h1>
+            <p class="thankyou-text">
+                Merci pour votre confiance. Nous analysons actuellement les performances de votre site internet. Votre diagnostic personnalisé et gratuit vous sera envoyé par e-mail sous 24 heures.
+            </p>
+
+            <div class="action-box">
+                <h3>Vous souhaitez accélérer les choses ?</h3>
+                <p>Planifiez dès maintenant votre appel de diagnostic de 10 minutes (offert) pour échanger sur vos objectifs de visibilité locale.</p>
+                <button data-cal-link="vintage-digital-1aadmo/appel-decouverte-10-min" data-cal-config='{"theme":"light"}' class="btn-wow">Choisir mon créneau de 10 min</button>
+            </div>
+
+            <div class="button-group">
+                <a href="index.html" class="btn-secondary" style="padding: 12px 24px; font-size: 0.9rem;">Retourner sur le site</a>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container text-center">
+            <p>&copy; 2026 Vintage Digital. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Cal.com JavaScript Overlay Setup -->
+    <script type="text/javascript">
+      (function (C, A, L) {
+        let p = function (a, ar) { a.q.push(ar); };
+        let d = C.document; C.Cal = C.Cal || function () {
+          let cal = C.Cal; let ar = arguments;
+          if (!cal.loaded) {
+            cal.ns = {}; cal.q = cal.q || [];
+            d.head.appendChild(d.createElement("script")).src = A;
+            cal.loaded = true;
+          }
+          if (ar[0] === L) {
+            const api = function () { p(api, arguments); };
+            const namespace = ar[1];
+            api.q = api.q || [];
+            if (typeof namespace === "string") {
+              cal.ns[namespace] = cal.ns[namespace] || api;
+              p(cal.ns[namespace], ar);
+              p(cal, ["initNamespace", namespace]);
+            } else p(cal, ar);
+            return;
+          }
+          p(cal, ar);
+        };
+      })(window, "https://app.cal.com/embed/embed.js", "init");
+      
+      Cal("init", { origin: "https://cal.com" });
+      Cal("ui", {
+        styles: {
+          branding: {
+            brandColor: "#bfa054"
+          }
+        }
+      });
+    </script>
+</body>
+</html>

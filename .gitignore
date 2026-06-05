@@ -1,0 +1,14 @@
+# Ignorer tous les dossiers de ressources et d'outils
+/*/
+
+# Ignorer tous les fichiers archives ZIP
+*.zip
+
+# Ignorer les fichiers temporaires et de logs
+*.txt
+*.log
+.system_generated/
+.gemini/
+.agents/
+Thumbs.db
+.DS_Store
