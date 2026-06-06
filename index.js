@@ -167,4 +167,75 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // 4. FAQ Accordion Toggle
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+            const item = question.parentElement;
+            const answer = item.querySelector('.faq-answer');
+            
+            // Close other items
+            document.querySelectorAll('.faq-item').forEach(otherItem => {
+                if (otherItem !== item && otherItem.classList.contains('active')) {
+                    otherItem.classList.remove('active');
+                    otherItem.querySelector('.faq-answer').style.maxHeight = '0px';
+                }
+            });
+            
+            item.classList.toggle('active');
+            if (item.classList.contains('active')) {
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            } else {
+                answer.style.maxHeight = '0px';
+            }
+        });
+    });
+
+    // 5. Testimonials Carousel
+    const slides = document.querySelectorAll('.testimonial-slide');
+    const dots = document.querySelectorAll('.carousel-dot');
+    const prevBtn = document.getElementById('prev-testimonial');
+    const nextBtn = document.getElementById('next-testimonial');
+    let currentSlide = 0;
+
+    function showSlide(index) {
+        if (slides.length === 0) return;
+        if (index >= slides.length) currentSlide = 0;
+        else if (index < 0) currentSlide = slides.length - 1;
+        else currentSlide = index;
+
+        slides.forEach((slide, i) => {
+            if (i === currentSlide) {
+                slide.classList.add('active');
+                slide.style.display = 'block';
+            } else {
+                slide.classList.remove('active');
+                slide.style.display = 'none';
+            }
+        });
+
+        dots.forEach((dot, i) => {
+            if (i === currentSlide) dot.classList.add('active');
+            else dot.classList.remove('active');
+        });
+    }
+
+    if (prevBtn && nextBtn && slides.length > 0) {
+        // Init first slide
+        showSlide(0);
+
+        prevBtn.addEventListener('click', () => showSlide(currentSlide - 1));
+        nextBtn.addEventListener('click', () => showSlide(currentSlide + 1));
+        
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => showSlide(i));
+        });
+
+        // Auto-slide every 8 seconds
+        setInterval(() => {
+            showSlide(currentSlide + 1);
+        }, 8000);
+    }
 });
+

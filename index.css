@@ -3,27 +3,31 @@
 ------------------------------------------------------- */
 
 :root {
-    /* Color Tokens (HSL) - High-End Light Theme */
-    --bg-main: hsl(40, 30%, 96%);      /* Crème de soie - Lumineux, chaleureux et rassurant */
-    --bg-alt: hsl(40, 20%, 92%);       /* Sable doux pour les démarcations */
-    --text-primary: hsl(220, 20%, 15%); /* Gris ardoise de luxe pour une lisibilité parfaite */
-    --text-muted: hsl(220, 12%, 45%);   /* Gris ardoise atténué */
+    /* Color Tokens (HSL) - Tech-Artisan Premium Light Theme */
+    --bg-main: hsl(210, 40%, 98%);      /* Blanc de Glace / Ice White */
+    --bg-alt: hsl(214, 32%, 91%);       /* Gris Aluminium / Aluminum Gray */
+    --text-primary: hsl(222, 47%, 11%); /* Bleu Obsidienne / Obsidian Blue */
+    --text-muted: hsl(215, 16%, 47%);   /* Gris d'Acier atténué */
     
-    --color-gold: hsl(38, 55%, 48%);    /* Or chaud brossé de prestige */
-    --color-emerald: hsl(152, 60%, 38%); /* Vert Menthe - Performance / Succès */
-    --color-slate-dark: hsl(220, 25%, 12%);
+    --color-gold: hsl(221, 83%, 53%);    /* Bleu Cobalt (anciennement color-gold pour compatibilité de classes, mais bleu désormais) */
+    --color-orange: hsl(20, 90%, 48%);  /* Orange Ambre pour les actions */
+    --color-emerald: hsl(152, 60%, 38%); /* Vert Menthe - Vitesse / Validation */
+    --color-slate-dark: hsl(222, 47%, 11%);
     
-    --accent-gradient: linear-gradient(135deg, var(--color-gold) 0%, hsl(20, 50%, 42%) 100%); /* Or à Bronze */
-    --accent-gradient-hover: linear-gradient(135deg, hsl(38, 65%, 52%) 0%, hsl(20, 60%, 46%) 100%);
+    --accent-gradient: linear-gradient(135deg, var(--color-gold) 0%, hsl(221, 70%, 40%) 100%); /* Dégradé de Bleus Cobalt */
+    --accent-gradient-hover: linear-gradient(135deg, hsl(221, 90%, 60%) 0%, hsl(221, 80%, 45%) 100%);
     
+    --orange-gradient: linear-gradient(135deg, var(--color-orange) 0%, hsl(10, 85%, 45%) 100%); /* Dégradé Orange Ambre */
+    --orange-gradient-hover: linear-gradient(135deg, hsl(20, 95%, 55%) 0%, hsl(10, 90%, 50%) 100%);
+
     /* Spacing & Layout Tokens */
     --font-heading: 'Outfit', sans-serif;
     --font-body: 'Inter', sans-serif;
     
     /* Glossy Light Glassmorphism */
-    --glass-bg: rgba(255, 255, 255, 0.75);
-    --glass-border: rgba(30, 41, 59, 0.08);
-    --glass-shadow: 0 12px 35px 0 rgba(30, 41, 59, 0.05);
+    --glass-bg: rgba(255, 255, 255, 0.82);
+    --glass-border: rgba(15, 23, 42, 0.08);
+    --glass-shadow: 0 12px 35px 0 rgba(15, 23, 42, 0.04);
 }
 
 /* Reset & Base Styles */
@@ -94,7 +98,7 @@ h1, h2, h3, h4 {
 .orb-2 {
     top: 40%;
     left: -10%;
-    background-color: var(--color-gold);
+    background-color: var(--color-orange);
 }
 
 /* Helper spacing utility */
@@ -176,7 +180,7 @@ h1, h2, h3, h4 {
 
 /* Buttons */
 .btn-wow {
-    background: var(--accent-gradient);
+    background: var(--orange-gradient);
     color: #ffffff;
     font-weight: 600;
     padding: 14px 28px;
@@ -185,12 +189,12 @@ h1, h2, h3, h4 {
     cursor: pointer;
     display: inline-block;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 4px 15px rgba(217, 167, 74, 0.2);
+    box-shadow: 0 4px 15px rgba(234, 88, 12, 0.2);
 }
 
 .btn-wow:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(217, 167, 74, 0.35);
+    box-shadow: 0 8px 25px rgba(234, 88, 12, 0.35);
 }
 
 .btn-wow:active {
@@ -970,3 +974,178 @@ input[type=range]::-webkit-slider-thumb:hover {
     background-color: var(--bg-alt);
     font-size: 0.9rem;
 }
+
+/* ----------------------------------------------------
+   FAQ SECTION (ACCORDIONS)
+------------------------------------------------------- */
+
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    border-bottom: 1px solid var(--glass-border);
+    padding: 20px 0;
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--color-slate-dark);
+    cursor: pointer;
+    padding: 10px 0;
+    transition: color 0.3s ease;
+}
+
+.faq-question:hover {
+    color: var(--color-gold);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    padding-right: 30px;
+}
+
+.faq-item.active .faq-answer {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.faq-icon {
+    transition: transform 0.3s ease;
+    color: var(--color-gold);
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(45deg);
+}
+
+/* ----------------------------------------------------
+   TESTIMONIALS (CAROUSEL)
+------------------------------------------------------- */
+
+.testimonials-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.testimonials-container {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    padding: 20px 0;
+}
+
+.testimonial-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+}
+
+.testimonial-slide {
+    min-width: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    padding: 0 10px;
+}
+
+.testimonial-slide.active {
+    opacity: 1;
+}
+
+.testimonial-card {
+    text-align: center;
+    padding: 40px 30px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    box-shadow: var(--glass-shadow);
+}
+
+.testimonial-quote {
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--color-slate-dark);
+    line-height: 1.7;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.testimonial-author {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--color-gold);
+}
+
+.testimonial-company {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+.carousel-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.carousel-btn {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--color-slate-dark);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--glass-shadow);
+    transition: all 0.2s ease;
+}
+
+.carousel-btn:hover {
+    background: var(--color-gold);
+    color: #ffffff;
+    border-color: transparent;
+    transform: scale(1.05);
+}
+
+.carousel-dots {
+    display: flex;
+    gap: 8px;
+}
+
+.carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--glass-border);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.carousel-dot.active {
+    background: var(--color-gold);
+    width: 20px;
+    border-radius: 99px;
+}
+

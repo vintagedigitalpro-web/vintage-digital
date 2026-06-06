@@ -48,13 +48,13 @@ Pour générer des logos propres, épurés et facilement intégrables sur un sit
 Voici des templates de prompts prêts à l'emploi. Remplacez `[Nom]` par le nom de l'entreprise cible :
 
 ### A. Secteur du Bâtiment & BTP (Durand & Fils)
-> **Prompt** : *A minimalist geometric vector logo for a high-end construction company named "Durand BTP". Clean lines depicting a stylish roof and modern architectural structure, flat design, deep blue and copper accents, isolated on white background, corporate, professional.*
+> **Prompt** : *A minimalist geometric vector logo for a high-end construction company named "Durand BTP". Clean lines depicting a stylish roof and modern architectural structure, flat design, cobalt blue and vibrant amber orange accents, isolated on white background, corporate, professional.*
 
 ### B. Secteur de la Restauration (Bistrot Gourmet)
-> **Prompt** : *A modern elegant vector logo for a French bistro named "Le Gourmet". A stylish chef's hat combined with a vintage wine glass outline, flat minimalist design, elegant gold and dark slate colors, white background, high-end branding.*
+> **Prompt** : *A modern elegant vector logo for a French bistro named "Le Gourmet". A stylish chef's hat combined with a vintage wine glass outline, flat minimalist design, dark obsidian and deep orange accents, white background, high-end branding.*
 
 ### C. Métiers du Droit & Conseil (Cabinet Lemaire)
-> **Prompt** : *A corporate sophisticated vector logo for a law firm named "Lemaire & Associes". Geometric scales of justice combined with a clean serif letter "L", flat minimalist design, royal blue and bronze colors, isolated on white background, premium feel.*
+> **Prompt** : *A corporate sophisticated vector logo for a law firm named "Lemaire & Associes". Geometric scales of justice combined with a clean serif letter "L", flat minimalist design, deep cobalt blue and dark steel colors, isolated on white background, premium feel.*
 
 ### D. Artisanat & Menuiserie (Atelier du Bois)
-> **Prompt** : *A clean organic vector logo for an artisanal carpentry workshop named "Atelier du Bois". A stylized oak leaf merged with a modern geometric circular saw blade, flat design, natural green and warm timber brown colors, isolated on white background.*
+> **Prompt** : *A clean organic vector logo for an artisanal carpentry workshop named "Atelier du Bois". A stylized oak leaf merged with a modern geometric circular saw blade, flat design, deep teal and warm amber orange colors, isolated on white background.*
