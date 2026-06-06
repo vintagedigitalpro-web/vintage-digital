@@ -481,7 +481,7 @@
 
     <!-- Sidebar navigation -->
     <aside class="sidebar">
-        <a href="#" class="sidebar-brand">
+        <a href="javascript:void(0)" class="sidebar-brand">
             <div class="sidebar-logo">
                 <img src="logo.png" alt="Vintage Digital Logo">
             </div>
@@ -493,9 +493,9 @@
 
         <nav style="margin-top: 20px;">
             <ul class="nav-list">
-                <li class="nav-item active" id="nav-dash"><a href="#" onclick="showSection('dash')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg> Présentations Clés</a></li>
-                <li class="nav-item" id="nav-pitches"><a href="#" onclick="showSection('pitches')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg> Scripts d'Appel</a></li>
-                <li class="nav-item" id="nav-objections"><a href="#" onclick="showSection('objections')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> 30+ Objections</a></li>
+                <li class="nav-item active" id="nav-dash"><a href="javascript:void(0)" onclick="showSection('dash')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg> Présentations Clés</a></li>
+                <li class="nav-item" id="nav-pitches"><a href="javascript:void(0)" onclick="showSection('pitches')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg> Scripts d'Appel</a></li>
+                <li class="nav-item" id="nav-objections"><a href="javascript:void(0)" onclick="showSection('objections')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> 30+ Objections</a></li>
             </ul>
         </nav>
 
@@ -911,10 +911,10 @@
                 item.onclick = function() { toggleObjection(this); };
 
                 item.innerHTML = `
-                    <button class="objection-header">
+                    <div class="objection-header">
                         <span>${obj.id}. ${obj.title}</span>
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </button>
+                    </div>
                     <div class="objection-body">
                         <p><strong>Poste de tir :</strong> ${obj.tip}</p>
                         <br>
