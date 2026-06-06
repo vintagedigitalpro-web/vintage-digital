@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vintage Digital — Espace Commercial & Dashboard</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #f8fafc;
+            --bg-sidebar: #0f172a;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --color-blue: #2563eb;
+            --color-orange: #ea580c;
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(15, 23, 42, 0.08);
+            --glass-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar styling */
+        .sidebar {
+            width: 280px;
+            background-color: var(--bg-sidebar);
+            color: #ffffff;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 10;
+        }
+
+        .sidebar-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            text-decoration: none;
+            color: #ffffff;
+        }
+
+        .sidebar-logo {
+            width: 40px;
+            height: 40px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+        }
+
+        .sidebar-logo img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .brand-text h2 {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 800;
+        }
+
+        .brand-text span {
+            font-size: 0.65rem;
+            color: #94a3b8;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .nav-item a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            color: #94a3b8;
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-item a:hover, .nav-item.active a {
+            color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .nav-item.active a {
+            background-color: var(--color-blue);
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .sidebar-footer h4 {
+            font-size: 0.85rem;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .sidebar-footer p {
+            font-size: 0.75rem;
+            color: #94a3b8;
+        }
+
+        /* Main Content area */
+        .main-content {
+            margin-left: 280px;
+            padding: 40px;
+            width: calc(100% - 280px);
+            max-width: 1400px;
+        }
+
+        .header-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 35px;
+        }
+
+        .header-actions h1 {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            font-weight: 800;
+        }
+
+        .badge-premium {
+            background: linear-gradient(135deg, var(--color-blue) 0%, #1d4ed8 100%);
+            color: #ffffff;
+            padding: 6px 16px;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        /* Dashboard grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--glass-shadow);
+            margin-bottom: 30px;
+        }
+
+        .glass-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Calculator Styles */
+        .calc-group {
+            margin-bottom: 20px;
+        }
+
+        .calc-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .calc-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .calc-input-wrapper span {
+            position: absolute;
+            right: 16px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .calc-input {
+            width: 100%;
+            padding: 14px;
+            border: 1.5px solid var(--glass-border);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: var(--font-body);
+            font-weight: 600;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .calc-input:focus {
+            border-color: var(--color-blue);
+        }
+
+        .calc-result-box {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(234, 88, 12, 0.05) 100%);
+            border: 1.5px dashed var(--color-blue);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .calc-result-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .calc-result-value {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--color-orange);
+            margin-bottom: 10px;
+        }
+
+        .calc-result-note {
+            font-size: 0.85rem;
+            color: var(--color-blue);
+            font-weight: 500;
+        }
+
+        /* Scenarios tabs & content */
+        .scenarios-tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 15px;
+            overflow-x: auto;
+        }
+
+        .scenario-tab {
+            background: none;
+            border: none;
+            padding: 10px 18px;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .scenario-tab:hover, .scenario-tab.active {
+            color: var(--color-blue);
+            background-color: rgba(37, 99, 235, 0.05);
+        }
+
+        .scenario-tab.active {
+            background-color: var(--color-blue);
+            color: #ffffff;
+        }
+
+        .scenario-content {
+            display: none;
+        }
+
+        .scenario-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .target-profile {
+            display: flex;
+            gap: 15px;
+            background: rgba(15, 23, 42, 0.02);
+            border-left: 4px solid var(--color-blue);
+            padding: 15px;
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 25px;
+        }
+
+        .target-profile h4 {
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .target-profile p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Interactive script builder */
+        .script-builder {
+            background-color: #ffffff;
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 25px;
+            margin-top: 25px;
+        }
+
+        .builder-inputs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .builder-field label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text-muted);
+        }
+
+        .builder-field input, .builder-field select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .builder-field input:focus, .builder-field select:focus {
+            border-color: var(--color-blue);
+        }
+
+        /* Pitch box with copy action */
+        .pitch-box {
+            position: relative;
+            background-color: #0f172a;
+            color: #f8fafc;
+            padding: 25px;
+            border-radius: 12px;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            white-space: pre-line;
+            max-height: 380px;
+            overflow-y: auto;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .pitch-box mark {
+            background-color: rgba(234, 88, 12, 0.3);
+            color: #ffedd5;
+            padding: 2px 4px;
+            border-radius: 4px;
+            border-bottom: 1.5px solid var(--color-orange);
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.02);
+        }
+
+        .copy-btn.copied {
+            background-color: #10b981;
+            border-color: transparent;
+        }
+
+        /* Objection matrix */
+        .objection-item {
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            background-color: #ffffff;
+        }
+
+        .objection-header {
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            padding: 18px 24px;
+            font-family: var(--font-heading);
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-main);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.2s ease;
+        }
+
+        .objection-header:hover {
+            background-color: rgba(15, 23, 42, 0.01);
+        }
+
+        .objection-header svg {
+            transition: transform 0.2s ease;
+            color: var(--color-blue);
+        }
+
+        .objection-item.active .objection-header svg {
+            transform: rotate(180deg);
+        }
+
+        .objection-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.25s ease-out;
+            padding: 0 24px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            background-color: rgba(15, 23, 42, 0.005);
+        }
+
+        .objection-item.active .objection-body {
+            padding-bottom: 20px;
+        }
+
+        .tip-box {
+            background-color: rgba(37, 99, 235, 0.03);
+            border-left: 4px solid var(--color-blue);
+            padding: 15px 20px;
+            border-radius: 0 12px 12px 0;
+            font-size: 0.85rem;
+            margin-top: 15px;
+            color: var(--color-blue);
+            font-weight: 500;
+        }
+
+        .sales-pipeline-mini {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .pipeline-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 15px;
+            background-color: #ffffff;
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+        }
+
+        .step-number {
+            width: 28px;
+            height: 28px;
+            background-color: rgba(37, 99, 235, 0.1);
+            color: var(--color-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        .step-info h4 {
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .step-info p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar navigation -->
+    <aside class="sidebar">
+        <a href="#" class="sidebar-brand">
+            <div class="sidebar-logo">
+                <img src="logo.png" alt="Vintage Digital Logo">
+            </div>
+            <div class="brand-text">
+                <h2>Vintage <span style="font-weight: 400; color: #94a3b8;">Digital</span></h2>
+                <span>ESPACE COMMERCIAL</span>
+            </div>
+        </a>
+
+        <nav style="margin-top: 20px;">
+            <ul class="nav-list">
+                <li class="nav-item active" id="nav-dash"><a href="#" onclick="showSection('dash')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg> Dashboard & Comm</a></li>
+                <li class="nav-item" id="nav-pitches"><a href="#" onclick="showSection('pitches')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg> Pitches & Scénarios</a></li>
+                <li class="nav-item" id="nav-objections"><a href="#" onclick="showSection('objections')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> Traiter les Objections</a></li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <h4>Vintage Digital Pro</h4>
+            <p>Commissions à 20%</p>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="header-actions">
+            <div>
+                <h1 id="page-title">Dashboard Commercial & Commission</h1>
+                <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 5px;">Configurez vos deals, préparez vos relances et optimisez votre taux de conversion.</p>
+            </div>
+            <span class="badge-premium">COMMISSION 20%</span>
+        </header>
+
+        <!-- SECTION 1: DASHBOARD -->
+        <section id="sec-dash" class="section-container">
+            <div class="dashboard-grid">
+                <div>
+                    <div class="glass-card">
+                        <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg> Votre Pipeline de Vente</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 25px;">Le tunnel à suivre pour closer un artisan local étape par étape.</p>
+                        
+                        <div class="sales-pipeline-mini">
+                            <div class="pipeline-step">
+                                <div class="step-number">1</div>
+                                <div class="step-info">
+                                    <h4>Sourcing & Audit</h4>
+                                    <p>Identifiez une PME/Artisan dans votre région. Tapez sa recherche métier sur Google et testez son site actuel sur PageSpeed si existant. Notez ses faiblesses.</p>
+                                </div>
+                            </div>
+                            <div class="pipeline-step">
+                                <div class="step-number">2</div>
+                                <div class="step-info">
+                                    <h4>Premier Contact (Audit Offert)</h4>
+                                    <p>Envoyez le pitch "L'Invisible" (si pas de site) ou "Lenteur Mobile" par mail/SMS. L'hameçon est l'audit offert de 10 min.</p>
+                                </div>
+                            </div>
+                            <div class="pipeline-step">
+                                <div class="step-number">3</div>
+                                <div class="step-info">
+                                    <h4>Appel Découverte (10 min)</h4>
+                                    <p>Posez des questions sur le panier moyen et chiffrez le manque à gagner grâce au simulateur sur la page d'accueil de Vintage Digital.</p>
+                                </div>
+                            </div>
+                            <div class="pipeline-step">
+                                <div class="step-number">4</div>
+                                <div class="step-info">
+                                    <h4>Proposition & Co-création</h4>
+                                    <p>Laissez le client exprimer son enveloppe confortable de départ. Ajustez la complexité du site vitrine à son budget. Signez le contrat à 0€/mois récurrent.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Commission Calculator -->
+                <div>
+                    <div class="glass-card">
+                        <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg> Simulateur de Commission</h3>
+                        <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 20px;">Entrez la valeur du contrat signé pour voir votre gain direct.</p>
+                        
+                        <div class="calc-group">
+                            <label for="deal-value">Montant du contrat (€ HT)</label>
+                            <div class="calc-input-wrapper">
+                                <input type="number" id="deal-value" class="calc-input" value="1500" min="500" max="15000" oninput="updateCommission()">
+                                <span>€ HT</span>
+                            </div>
+                        </div>
+
+                        <div class="calc-group">
+                            <label for="deal-count">Nombre de contrats ce mois-ci</label>
+                            <div class="calc-input-wrapper">
+                                <input type="number" id="deal-count" class="calc-input" value="3" min="1" max="20" oninput="updateCommission()">
+                                <span>Contrats</span>
+                            </div>
+                        </div>
+
+                        <div class="calc-result-box">
+                            <div class="calc-result-title">Votre Commission Cumulée (20%)</div>
+                            <div class="calc-result-value" id="comm-val">900 €</div>
+                            <div class="calc-result-note" id="comm-note">Soit 300 € par contrat de 1 500 € !</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: PITCHES -->
+        <section id="sec-pitches" class="section-container" style="display: none;">
+            <div class="glass-card">
+                <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg> Choisissez le scénario de votre prospect</h3>
+                
+                <div class="scenarios-tabs">
+                    <button class="scenario-tab active" onclick="switchScenario('nosite')" id="tab-nosite">1. Pas de site (L'invisible)</button>
+                    <button class="scenario-tab" onclick="switchScenario('slowsite')" id="tab-slowsite">2. Site existant lent / obsolète</button>
+                    <button class="scenario-tab" onclick="switchScenario('cocreate')" id="tab-cocreate">3. Projet existant à budget serré</button>
+                </div>
+
+                <!-- Active Scenario Content -->
+                <div id="scen-nosite" class="scenario-content active">
+                    <div class="target-profile">
+                        <div style="font-size: 1.5rem;">🎯</div>
+                        <div>
+                            <h4>Cible : "L'invisible" (Pas de site web ou fiche Google vide)</h4>
+                            <p>Artisan ou commerce local qui travaille uniquement au bouche-à-oreille et ne voit pas l'intérêt d'un site web ou craint les abonnements à 150€/mois.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="scen-slowsite" class="scenario-content">
+                    <div class="target-profile" style="border-left-color: var(--color-orange);">
+                        <div style="font-size: 1.5rem;">⚡</div>
+                        <div>
+                            <h4>Cible : "Le train de retard" (Site existant lent, non HTTPS, non adapté mobile)</h4>
+                            <p>Le prospect a un vieux site fait il y a 8 ans par une agence. Il paye encore des frais de maintenance ou le site met plus de 4s à charger sur mobile.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="scen-cocreate" class="scenario-content">
+                    <div class="target-profile" style="border-left-color: #10b981;">
+                        <div style="font-size: 1.5rem;">🤝</div>
+                        <div>
+                            <h4>Cible : "Co-création" (Volonté d'un site mais budget de départ très limité)</h4>
+                            <p>Le prospect est motivé mais il a peur de se lancer financièrement. On utilise la règle de la co-création budgétaire de Vintage Digital.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Script Personalization Builder -->
+                <div class="script-builder">
+                    <h4 style="margin-bottom: 15px; font-family: var(--font-heading); font-size: 1.1rem;">Personnalisez les messages en temps réel :</h4>
+                    
+                    <div class="builder-inputs">
+                        <div class="builder-field">
+                            <label for="p-name">Nom du Dirigeant</label>
+                            <input type="text" id="p-name" value="Jean" oninput="generatePitches()">
+                        </div>
+                        <div class="builder-field">
+                            <label for="p-company">Nom de l'Entreprise</label>
+                            <input type="text" id="p-company" value="Durand Rénovation" oninput="generatePitches()">
+                        </div>
+                        <div class="builder-field">
+                            <label for="p-craft">Métier / Secteur</label>
+                            <input type="text" id="p-craft" value="couvreur" oninput="generatePitches()">
+                        </div>
+                        <div class="builder-field">
+                            <label for="p-city">Ville</label>
+                            <input type="text" id="p-city" value="Angers" oninput="generatePitches()">
+                        </div>
+                        <div class="builder-field" id="speed-field-wrapper" style="display: none;">
+                            <label for="p-speed">Vitesse actuelle (s)</label>
+                            <input type="number" id="p-speed" value="4.5" step="0.1" oninput="generatePitches()">
+                        </div>
+                    </div>
+
+                    <!-- Tabs for output format (Email, SMS/Message Court, Script Téléphonique) -->
+                    <div style="display: flex; gap: 8px; margin-bottom: 15px;">
+                        <button class="scenario-tab active" id="tab-format-email" onclick="switchFormat('email')" style="padding: 6px 12px; font-size: 0.8rem;">Format Email</button>
+                        <button class="scenario-tab" id="tab-format-sms" onclick="switchFormat('sms')" style="padding: 6px 12px; font-size: 0.8rem;">Format Message court / SMS</button>
+                        <button class="scenario-tab" id="tab-format-phone" onclick="switchFormat('phone')" style="padding: 6px 12px; font-size: 0.8rem;">Script d'Appel / Oral</button>
+                    </div>
+
+                    <!-- Generated Pitch Box -->
+                    <div style="position: relative;">
+                        <button class="copy-btn" id="btn-copy" onclick="copyPitch()">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                            <span>Copier le message</span>
+                        </button>
+                        <div class="pitch-box" id="pitch-output">Chargement du pitch...</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: OBJECTIONS -->
+        <section id="sec-objections" class="section-container" style="display: none;">
+            <div class="glass-card">
+                <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> Boîte à Outils de Closing & Traitement des Objections</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 25px;">Cliquez sur l'objection formulée par le client pour dérouler la réponse parfaite.</p>
+
+                <!-- Objection 1 -->
+                <div class="objection-item" onclick="toggleObjection(this)">
+                    <button class="objection-header">
+                        <span>1. "Un site gratuit sur Wix/ChatGPT ou fait par mon neveu me suffit."</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="objection-body">
+                        <p><strong>Poste de tir :</strong> Ne critiquez pas l'outil ou le membre de la famille. Valorisez l'impact commercial direct d'une vitrine professionnelle.</p>
+                        <br>
+                        <p><em>« Vous avez tout à fait raison, les outils gratuits ou l'IA permettent aujourd'hui d'avoir une vitrine en ligne en quelques clics. Mais le problème de ces outils, c'est qu'ils génèrent des sites extrêmement lourds à charger sur mobile et invisibles sur Google. »</em></p>
+                        <br>
+                        <p><em>« Chez Vintage Digital, on ne crée pas juste un site. On bâtit une machine à capter des clients : nous ciblons les requêtes de chantiers précises dans votre zone pour que vous passiez devant vos concurrents sur Google. Un site gratuit qui ne vous amène aucun appel vous coûte plus cher en perte d'opportunités qu'un site optimisé. »</em></p>
+                    </div>
+                </div>
+
+                <!-- Objection 2 -->
+                <div class="objection-item" onclick="toggleObjection(this)">
+                    <button class="objection-header">
+                        <span>2. "Je n'ai pas besoin de site web, le bouche-à-oreille me suffit."</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="objection-body">
+                        <p><strong>Poste de tir :</strong> Félicitez la qualité de leur bouche-à-oreille et démontrez qu'un bon site le sécurise.</p>
+                        <br>
+                        <p><em>« C'est une excellente nouvelle, et c'est la preuve que vos clients actuels sont ravis de votre travail. Mais saviez-vous que même lorsqu'on vous recommande, 85 % des gens tapent votre nom ou celui de votre entreprise sur Google avant de vous appeler pour la première fois ? »</em></p>
+                        <br>
+                        <p><em>« Si votre site est introuvable, lent ou a un look dépassé, vous risquez de semer le doute. Une vitrine propre et ultra-rapide vient confirmer et rassurer ce bouche-à-oreille, pour transformer la recommandation en contrat signé à coup sûr. »</em></p>
+                    </div>
+                </div>
+
+                <!-- Objection 3 -->
+                <div class="objection-item" onclick="toggleObjection(this)">
+                    <button class="objection-header">
+                        <span>3. "C'est trop cher pour mon budget / ma trésorerie."</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="objection-body">
+                        <p><strong>Poste de tir :</strong> Ramenez le coût du site à sa rentabilité sur un ou deux chantiers (ROI).</p>
+                        <br>
+                        <p><em>« Je comprends parfaitement, sortir 1 500 € pour la création d'une vitrine doit être un investissement immédiatement rentable. Regardons cela de manière pragmatique : quel est le montant moyen d'un seul de vos chantiers ou contrats ? »</em></p>
+                        <br>
+                        <p><em>« Si le site ne vous amène qu'un seul nouveau contrat par an, votre investissement est déjà entièrement remboursé. Généralement, nos clients rentabilisent le site dès les deux premiers mois. C'est un actif qui vous appartient à vie, sans aucun abonnement captif mensuel. »</em></p>
+                    </div>
+                </div>
+
+                <!-- Objection 4 -->
+                <div class="objection-item" onclick="toggleObjection(this)">
+                    <button class="objection-header">
+                        <span>4. "D'accord, mais ça coûte combien votre truc ? Donnez-moi un prix direct."</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="objection-body">
+                        <p><strong>Poste de tir :</strong> N'annoncez jamais le prix directement. Mettez le client au centre en lui faisant fixer lui-même son enveloppe budgétaire.</p>
+                        <br>
+                        <p><em>« C'est tout à fait normal de vouloir budgétiser cela. Chez Vintage Digital, on ne travaille pas avec des formules rigides. Nous concevons le projet sur-mesure pour qu'il soit immédiatement rentable par rapport à vos objectifs. »</em></p>
+                        <br>
+                        <p><em>« Pour que l'on parte sur une base sereine de confiance : par rapport au chiffre d'affaires qu'un flux régulier de clients locaux peut vous apporter, quel est l'investissement de départ avec lequel vous seriez parfaitement à l'aise pour lancer ce projet ? »</em></p>
+                        <div class="tip-box">
+                            💡 <strong>Conseil commercial :</strong> S'il refuse de donner un chiffre, demandez-lui : « Si ce site vous apporte 2 nouveaux clients par mois, quelle part de ce revenu supplémentaire vous paraîtrait logique d'allouer au système qui vous les amène ? »
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        let currentSection = 'dash';
+        let activeScenario = 'nosite';
+        let activeFormat = 'email';
+
+        function showSection(sectionId) {
+            document.querySelectorAll('.sidebar .nav-item').forEach(item => item.classList.remove('active'));
+            document.getElementById('nav-' + sectionId).classList.add('active');
+            
+            document.querySelectorAll('.section-container').forEach(sec => sec.style.display = 'none');
+            document.getElementById('sec-' + sectionId).style.display = 'block';
+            
+            const title = document.getElementById('page-title');
+            if (sectionId === 'dash') {
+                title.textContent = 'Dashboard Commercial & Commission';
+            } else if (sectionId === 'pitches') {
+                title.textContent = 'Pitches, Messages & Scénarios';
+                generatePitches();
+            } else if (sectionId === 'objections') {
+                title.textContent = 'Traitement des Objections Clients';
+            }
+            currentSection = sectionId;
+        }
+
+        function switchScenario(scenario) {
+            document.querySelectorAll('.scenario-tab').forEach(tab => {
+                if (tab.id.startsWith('tab-scen') || tab.id === 'tab-nosite' || tab.id === 'tab-slowsite' || tab.id === 'tab-cocreate') {
+                    tab.classList.remove('active');
+                }
+            });
+            document.getElementById('tab-' + scenario).classList.add('active');
+            
+            document.querySelectorAll('.scenario-content').forEach(scen => scen.style.removeProperty('display'));
+            document.querySelectorAll('.scenario-content').forEach(scen => scen.classList.remove('active'));
+            document.getElementById('scen-' + scenario).classList.add('active');
+            
+            // Show speed input field only for slowsite
+            const speedField = document.getElementById('speed-field-wrapper');
+            if (scenario === 'slowsite') {
+                speedField.style.display = 'block';
+            } else {
+                speedField.style.display = 'none';
+            }
+            
+            activeScenario = scenario;
+            generatePitches();
+        }
+
+        function switchFormat(format) {
+            document.getElementById('tab-format-email').classList.remove('active');
+            document.getElementById('tab-format-sms').classList.remove('active');
+            document.getElementById('tab-format-phone').classList.remove('active');
+            
+            document.getElementById('tab-format-' + format).classList.add('active');
+            activeFormat = format;
+            generatePitches();
+        }
+
+        function generatePitches() {
+            const name = document.getElementById('p-name').value || '[Prénom]';
+            const company = document.getElementById('p-company').value || '[Entreprise]';
+            const craft = document.getElementById('p-craft').value || '[Métier]';
+            const city = document.getElementById('p-city').value || '[Ville]';
+            const speed = document.getElementById('p-speed').value || '4.0';
+
+            let text = '';
+
+            if (activeScenario === 'nosite') {
+                if (activeFormat === 'email') {
+                    text = `Objet : Visibilité locale et opportunités manquées pour <mark>${company}</mark> ⚡\n\nBonjour <mark>${name}</mark>,\n\nEn analysant l'activité des professionnels de votre secteur à <mark>${city}</mark>, je suis tombé sur votre fiche d'établissement. Votre réputation est excellente, mais j'ai constaté que vous n'avez pas encore de site internet vitrine pour présenter vos travaux.\n\nChaque mois, plus de 300 personnes recherchent un <mark>${craft}</mark> à <mark>${city}</mark> sur Google. Sans site internet propre, ces chantiers partent directement chez vos concurrents qui apparaissent en premier.\n\nPour vous montrer ce qu'il est possible de faire, j'ai préparé une maquette personnalisée et ultra-rapide pour <mark>${company}</mark>, conçue pour capter ces appels locaux.\n\nSeriez-vous ouvert à un appel rapide de 10 minutes ce jeudi pour que je vous présente cela gratuitement et sans engagement ?\n\nBien cordialement,\n\n[Votre Prénom] — Vintage Digital`;
+                } else if (activeFormat === 'sms') {
+                    text = `Bonjour <mark>${name}</mark> (de <mark>${company}</mark>). J'ai fait une rapide analyse de la visibilité des <mark>${craft}s</mark> à <mark>${city}</mark>. Vous êtes très recommandé, mais l'absence de site internet vous fait perdre environ 2 à 3 chantiers locaux par mois au profit de vos concurrents.\n\nJ'ai préparé une maquette concept gratuite pour votre entreprise. Seriez-vous dispo pour un appel de 10 min cette semaine pour la regarder ? [Votre Prénom] - Vintage Digital`;
+                } else {
+                    text = `« Bonjour <mark>${name}</mark> ? Je suis [Votre Prénom] de l'agence Vintage Digital à côté de chez vous.\n\nJe vous appelle parce que j'ai fait une étude de visibilité sur les <mark>${craft}s</mark> à <mark>${city}</mark>. J'ai vu que vous aviez de super retours clients mais pas encore de vitrine internet officielle.\n\nEn fait, d'après nos outils de recherche Google, il y a plus de 300 chantiers recherchés localement par mois pour votre métier, et aujourd'hui tout part chez vos concurrents.\n\nPour que ce soit concret pour vous, j'ai créé une maquette visuelle gratuite et personnalisée pour <mark>${company}</mark> afin de vous montrer comment capter ces demandes.\n\nEst-ce que vous auriez 10 minutes pour qu'on en discute tranquillement par téléphone cette semaine ? »`;
+                }
+            } else if (activeScenario === 'slowsite') {
+                if (activeFormat === 'email') {
+                    text = `Objet : Diagnostic de performance mobile pour <mark>${company}</mark> ⚡\n\nBonjour <mark>${name}</mark>,\n\nEn préparant un dossier sur les entreprises à <mark>${city}</mark>, je suis tombé sur le site internet de <mark>${company}</mark>. Votre savoir-faire est évident, mais j'ai remarqué que votre site actuel rencontre de gros ralentissements sur smartphone.\n\nD'après le test de performance officiel de Google (PageSpeed), votre page d'accueil met plus de <mark>${speed} secondes</mark> à s'afficher.\n\nGoogle recommande un chargement sous la barre des 2 secondes. Aujourd'hui, cette lenteur technique fait fuir plus de 30% des visiteurs mobiles avant même qu'ils ne voient vos réalisations.\n\nPour vous montrer la différence, j'ai développé une maquette d'accueil ultra-rapide (charge en moins de 0.8 seconde) et optimisée pour capter des appels pour <mark>${company}</mark>.\n\nSeriez-vous disponible ce jeudi à 14h pour un échange rapide de 10 minutes à ce sujet ?\n\nCordialement,\n\n[Votre Prénom] — Vintage Digital`;
+                } else if (activeFormat === 'sms') {
+                    text = `Bonjour <mark>${name}</mark>. J'ai testé la vitesse mobile de votre site <mark>${company}</mark> sur l'outil officiel de Google. Le chargement dépasse les <mark>${speed}s</mark>, ce qui bloque votre référencement et fait fuir vos clients sur mobile.\n\nJ'ai créé un prototype de site ultra-rapide (0.8s) pour vous montrer le gain d'appels possible. Dispo 10 min pour en parler ? [Votre Prénom] - Vintage Digital`;
+                } else {
+                    text = `« Bonjour <mark>${name}</mark> ? [Votre Prénom] de Vintage Digital.\n\nJe me permets de vous contacter car j'ai analysé techniquement votre site internet. Votre travail a l'air superbe, mais votre site actuel rencontre un problème majeur : il met plus de <mark>${speed} secondes</mark> à s'afficher sur un smartphone.\n\nD'après les critères officiels de Google, au-delà de 3 secondes, vous perdez environ 1 visiteur sur 3 qui repart immédiatement chez un concurrent.\n\nJ'ai conçu une maquette de site modernisée et ultra-rapide pour <mark>${company}</mark> afin de vous montrer ce que vous pourriez capter comme appels supplémentaires en réglant ce problème.\n\nEst-ce que vous seriez disponible 10 minutes pour un diagnostic gratuit par téléphone ? »`;
+                }
+            } else if (activeScenario === 'cocreate') {
+                if (activeFormat === 'email') {
+                    text = `Objet : Proposition de co-création de votre vitrine web pour <mark>${company}</mark> 🤝\n\nBonjour <mark>${name}</mark>,\n\nSuite à notre premier contact, j'ai bien noté votre volonté de déployer une vitrine web performante pour <mark>${company}</mark> à <mark>${city}</mark>, tout en devant composer avec un budget de trésorerie serré en ce moment.\n\nChez Vintage Digital, nous accompagnons les artisans locaux avec une approche unique : la co-création budgétaire.\n\nLe principe est simple : c'est vous qui déterminez l'enveloppe budgétaire exacte avec laquelle vous êtes confortable pour démarrer. De notre côté, nous adaptons la structure technique du site pour qu'elle s'aligne sur ce budget, sans jamais rogner sur la vitesse (moins de 0.8s) ou le référencement local.\n\nDe plus, vous êtes propriétaire du site à 100%, sans aucun abonnement récurrent mensuel d'agence.\n\nÊtes-vous disponible pour un appel rapide de 10 minutes afin que nous fixions ensemble cette enveloppe de départ ?\n\nBien cordialement,\n\n[Votre Prénom] — Vintage Digital`;
+                } else if (activeFormat === 'sms') {
+                    text = `Bonjour <mark>${name}</mark>. Pour installer le site de <mark>${company}</mark> sans peser sur votre trésorerie, on propose notre formule de co-création budgétaire : vous fixez l'enveloppe de départ confortable pour vous, et on adapte le site sur-mesure (sans abonnement mensuel).\n\nOn en discute 10 min au téléphone ? [Votre Prénom] - Vintage Digital`;
+                } else {
+                    text = `« Re-bonjour <mark>${name}</mark>, c'est [Votre Prénom] de Vintage Digital.\n\nJe reviens vers vous car je sais que le projet de site vous intéresse pour développer <mark>${company}</mark>, mais que le budget de départ vous fait un peu hésiter actuellement.\n\nJe voulais vous rassurer : chez nous, on fonctionne à la co-création. C'est-à-dire que c'est vous qui m'annoncez le budget avec lequel vous êtes parfaitement serein pour démarrer.\n\nNous, on s'adapte et on conçoit le site idéal pour rentrer dans cette enveloppe, tout en vous garantissant le même résultat technique de vitesse et de SEO local, et toujours sans aucun abonnement captif.\n\nQu'est-ce que vous en pensez, on se cale un appel de 10 minutes pour regarder quelle enveloppe vous conviendrait ? »`;
+                }
+            }
+
+            document.getElementById('pitch-output').innerHTML = text;
+        }
+
+        function copyPitch() {
+            const pitchBox = document.getElementById('pitch-output');
+            const btn = document.getElementById('btn-copy');
+            
+            // Extract text without HTML tags (remove marks)
+            const textToCopy = pitchBox.innerText;
+
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const originalText = btn.innerHTML;
+                btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> <span>Copié !</span>`;
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        function updateCommission() {
+            const dealValue = parseFloat(document.getElementById('deal-value').value) || 0;
+            const dealCount = parseInt(document.getElementById('deal-count').value) || 1;
+            
+            const singleComm = dealValue * 0.20;
+            const totalComm = singleComm * dealCount;
+            
+            document.getElementById('comm-val').textContent = totalComm.toLocaleString('fr-FR') + ' €';
+            document.getElementById('comm-note').textContent = `Soit ${singleComm.toLocaleString('fr-FR')} € de commission nette par contrat de ${dealValue.toLocaleString('fr-FR')} € !`;
+        }
+
+        function toggleObjection(element) {
+            const isActive = element.classList.contains('active');
+            
+            // Close all first
+            document.querySelectorAll('.objection-item').forEach(item => {
+                item.classList.remove('active');
+                item.querySelector('.objection-body').style.maxHeight = null;
+            });
+
+            if (!isActive) {
+                element.classList.add('active');
+                const body = element.querySelector('.objection-body');
+                body.style.maxHeight = body.scrollHeight + "px";
+            }
+        }
+
+        // Initialize view on load
+        window.onload = function() {
+            updateCommission();
+            generatePitches();
+        };
+    </script>
+</body>
+</html>
