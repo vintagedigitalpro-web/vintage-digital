@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vintage Digital — Assistant de Téléprospection (Appels à Froid)</title>
+    <title>Vintage Digital — Assistant Téléprospection & Cold Calling</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -150,6 +150,8 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 35px;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 20px;
         }
 
         .header-actions h1 {
@@ -158,20 +160,10 @@
             font-weight: 800;
         }
 
-        .badge-premium {
-            background: linear-gradient(135deg, var(--color-blue) 0%, #1d4ed8 100%);
-            color: #ffffff;
-            padding: 6px 16px;
-            border-radius: 9999px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-        }
-
-        /* Dashboard grid */
+        /* Dashboard layout */
         .dashboard-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr;
+            grid-template-columns: 2fr 1.2fr;
             gap: 30px;
         }
 
@@ -199,7 +191,7 @@
             gap: 10px;
         }
 
-        /* Scenarios tabs & content */
+        /* Tabs styling */
         .scenarios-tabs {
             display: flex;
             gap: 12px;
@@ -267,20 +259,20 @@
             color: var(--text-muted);
         }
 
-        /* Interactive script builder */
+        /* Script builder personalization */
         .script-builder {
             background-color: #ffffff;
             border: 1px solid var(--glass-border);
             border-radius: 16px;
             padding: 25px;
-            margin-top: 25px;
+            margin-top: 20px;
         }
 
         .builder-inputs {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .builder-field label {
@@ -298,13 +290,54 @@
             border-radius: 8px;
             font-size: 0.9rem;
             outline: none;
+            font-weight: 500;
         }
 
         .builder-field input:focus {
             border-color: var(--color-blue);
         }
 
-        /* Pitch box with copy action */
+        /* Angle Selector */
+        .angle-container {
+            margin-bottom: 20px;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 20px;
+        }
+
+        .angle-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .angle-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .angle-btn {
+            background: rgba(15, 23, 42, 0.03);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .angle-btn:hover, .angle-btn.active {
+            background-color: var(--color-blue);
+            color: #ffffff;
+            border-color: transparent;
+        }
+
+        /* Script output box */
         .pitch-box {
             position: relative;
             background-color: #0f172a;
@@ -313,15 +346,15 @@
             border-radius: 12px;
             font-family: var(--font-body);
             font-size: 0.95rem;
-            line-height: 1.6;
+            line-height: 1.65;
             white-space: pre-line;
-            max-height: 380px;
+            max-height: 400px;
             overflow-y: auto;
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .pitch-box mark {
-            background-color: rgba(234, 88, 12, 0.3);
+            background-color: rgba(234, 88, 12, 0.25);
             color: #ffedd5;
             padding: 2px 4px;
             border-radius: 4px;
@@ -356,7 +389,7 @@
             border-color: transparent;
         }
 
-        /* Objection matrix */
+        /* Objection Accordion */
         .objection-item {
             border: 1px solid var(--glass-border);
             border-radius: 12px;
@@ -421,44 +454,50 @@
             font-weight: 500;
         }
 
-        .sales-pipeline-mini {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .pipeline-step {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            padding: 15px;
-            background-color: #ffffff;
+        /* Presentations and Pitch Deck */
+        .presentation-card {
+            background: #ffffff;
             border: 1px solid var(--glass-border);
-            border-radius: 12px;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
         }
 
-        .step-number {
-            width: 28px;
-            height: 28px;
-            background-color: rgba(37, 99, 235, 0.1);
+        .presentation-card h4 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
             color: var(--color-blue);
-            border-radius: 50%;
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.85rem;
-            flex-shrink: 0;
+            gap: 8px;
         }
 
-        .step-info h4 {
-            font-size: 0.95rem;
-            margin-bottom: 4px;
-        }
-
-        .step-info p {
-            font-size: 0.8rem;
+        .presentation-card p {
+            font-size: 0.9rem;
             color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .presentation-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .presentation-card li {
+            font-size: 0.85rem;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .presentation-card li::before {
+            content: "✓";
+            color: var(--color-orange);
+            font-weight: 700;
         }
     </style>
 </head>
@@ -472,21 +511,21 @@
             </div>
             <div class="brand-text">
                 <h2>Vintage <span style="font-weight: 400; color: #94a3b8;">Digital</span></h2>
-                <span>MÉTHODE APPEL À FROID</span>
+                <span>TÉLÉPROSPECTION</span>
             </div>
         </a>
 
         <nav style="margin-top: 20px;">
             <ul class="nav-list">
                 <li class="nav-item active" id="nav-dash"><a href="#" onclick="showSection('dash')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg> Guide d'Appel</a></li>
-                <li class="nav-item" id="nav-pitches"><a href="#" onclick="showSection('pitches')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg> Scripts d'Appel</a></li>
+                <li class="nav-item" id="nav-pitches"><a href="#" onclick="showSection('pitches')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg> Scripts Interactifs</a></li>
                 <li class="nav-item" id="nav-objections"><a href="#" onclick="showSection('objections')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> Objections au Téléphone</a></li>
             </ul>
         </nav>
 
         <div class="sidebar-footer">
             <h4>Vintage Digital</h4>
-            <p>Téléprospection Active</p>
+            <p>Trame d'Appel à Froid v2</p>
         </div>
     </aside>
 
@@ -494,85 +533,84 @@
     <main class="main-content">
         <header class="header-actions">
             <div>
-                <h1 id="page-title">Méthodologie d'Appel à Froid (Cold Calling)</h1>
-                <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 5px;">Guide stratégique et scripts personnalisables pour notre téléprospecteur.</p>
+                <h1 id="page-title">Méthode de Téléprospection (Appels à Froid)</h1>
+                <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 5px;">Déroulé conversationnel d'appel à froid pour la vente de sites vitrines PME.</p>
             </div>
-            <span class="badge-premium">COLD CALL PRO</span>
+            <span class="badge-premium" style="background: linear-gradient(135deg, var(--color-orange) 0%, #c2410c 100%);">100% ORAL</span>
         </header>
 
-        <!-- SECTION 1: GUIDE D'APPEL -->
+        <!-- SECTION 1: GUIDE DE PRESENTATION SOLUTION & EQUIPE -->
         <section id="sec-dash" class="section-container">
             <div class="dashboard-grid">
                 <div>
                     <div class="glass-card">
-                        <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg> Structure d'un Appel à Froid Réussi</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 25px;">Le script d'appel est un guide. Suivez cette trame logique pour capter l'attention en moins de 30 secondes.</p>
+                        <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg> Présenter Vintage Digital au Téléphone</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 25px;">Voici les briques de langage pour expliquer qui nous sommes, notre force et pourquoi notre solution surpasse le marché.</p>
                         
-                        <div class="sales-pipeline-mini">
-                            <div class="pipeline-step">
-                                <div class="step-number">1</div>
-                                <div class="step-info">
-                                    <h4>L'Accroche & Le Hameçon (0 - 15s)</h4>
-                                    <p>Présentation brève, mention de la ville du prospect et de son secteur d'activité. Annoncer immédiatement la raison factuelle de l'appel (absence de vitrine ou lenteur critique constatée de son site actuel).</p>
-                                </div>
-                            </div>
-                            <div class="pipeline-step">
-                                <div class="step-number">2</div>
-                                <div class="step-info">
-                                    <h4>La Démonstration de Perte (15 - 45s)</h4>
-                                    <p>Chiffrer le manque à gagner lié aux recherches Google locales de leur métier dans leur ville. Le prospect doit réaliser que son invisibilité/lenteur profite directement à ses concurrents.</p>
-                                </div>
-                            </div>
-                            <div class="pipeline-step">
-                                <div class="step-number">3</div>
-                                <div class="step-info">
-                                    <h4>L'Offre de Valeur Gratuite (45 - 60s)</h4>
-                                    <p>Proposer de lui envoyer ou présenter un prototype visuel (maquette) ultra-rapide fait sur-mesure pour son entreprise. C'est l'hameçon non engageant.</p>
-                                </div>
-                            </div>
-                            <div class="pipeline-step">
-                                <div class="step-number">4</div>
-                                <div class="step-info">
-                                    <h4>Le Closing du RDV (Engagement court)</h4>
-                                    <p>Obtenir son accord pour un court diagnostic par téléphone de 10 minutes ou l'envoi de l'aperçu conceptuel. Bloquer le créneau.</p>
-                                </div>
-                            </div>
+                        <!-- Presentation 1: L'équipe -->
+                        <div class="presentation-card">
+                            <h4>👨‍💻 1. Qui est l'Équipe derrière le projet ?</h4>
+                            <p>Pour humaniser la relation et prouver notre technicité face aux agences commerciales classiques :</p>
+                            <ul>
+                                <li><strong>Joseph (SEO Sémantique local)</strong> : Expert en visibilité sémantique Google, dédié à positionner l'artisan en première page locale.</li>
+                                <li><strong>Michel (Code Pur & Performance)</strong> : Ingénieur web, spécialiste du code propre à la main (pas de modèles WordPress/Wix lourds et lents).</li>
+                            </ul>
+                        </div>
+
+                        <!-- Presentation 2: Notre solution Vitesse -->
+                        <div class="presentation-card">
+                            <h4>⚡ 2. Notre Différence Technique : La Vitesse (0.8 seconde)</h4>
+                            <p>Comment pitcher l'argument technique de la rapidité sans jargonner :</p>
+                            <ul>
+                                <li><strong>Le constat Google</strong> : Google Mobile pénalise fortement les sites chargeant en plus de 3 secondes.</li>
+                                <li><strong>Notre promesse</strong> : Nos sites se chargent en moins de 0.8 seconde, ce qui sécurise chaque clic et double les opportunités d'appels téléphoniques d'un client sur place.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Presentation 3: Pas d'abonnement -->
+                        <div class="presentation-card">
+                            <h4>❌ 3. L'absence d'abonnement d'agence captif</h4>
+                            <p>L'argument choc qui débloque la réticence habituelle des artisans :</p>
+                            <ul>
+                                <li><strong>Propriété Totale</strong> : Le site appartient à 100% au client dès la livraison. Aucun contrat de location mensuelle de 150€/mois engagé sur 36 mois.</li>
+                                <li><strong>Zéro coût récurrent caché</strong> : L'hébergement de notre architecture statique de pointe est entièrement hébergé gratuitement par la suite.</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
 
                 <div>
                     <div class="glass-card">
-                        <h3>⚡ Règle d'Or du Cold Calling</h3>
-                        <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-muted); margin-bottom: 15px;">
-                            <strong>Ne vendez pas un site internet pendant le premier appel.</strong> Vendez uniquement un court échange de 10 minutes pour lui présenter un concept de design gratuit et chiffrer son manque à gagner.
+                        <h3>Trame de l'appel</h3>
+                        <p style="font-size: 0.85rem; line-height: 1.6; color: var(--text-muted); margin-bottom: 15px;">
+                            <strong>Le but exclusif de l'appel à froid</strong> est d'obtenir l'accord du prospect pour lui envoyer un prototype gratuit de son futur site et planifier un court appel de 10 min pour lui présenter.
                         </p>
-                        <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-muted);">
-                            Parlez toujours de **chiffre d'affaires manqué** (freins techniques) et de **part de marché locale** plutôt que de technique ou d'hébergement.
+                        <hr style="border: 0; border-top: 1px solid var(--glass-border); margin: 15px 0;">
+                        <p style="font-size: 0.85rem; line-height: 1.6; color: var(--text-muted);">
+                            Évitez à tout prix les explications techniques complexes (FTP, statique, JS). Restez centré sur la <strong>perte de chantiers / d'appels locaux face à leurs concurrents directs</strong> dans leur ville.
                         </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 2: SCRIPTS D'APPEL -->
+        <!-- SECTION 2: SCRIPTS D'APPEL INTERACTIFS -->
         <section id="sec-pitches" class="section-container" style="display: none;">
             <div class="glass-card">
-                <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg> Sélectionnez le scénario d'appel</h3>
+                <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg> Scénarios d'Appels & Angles d'Attaque</h3>
                 
                 <div class="scenarios-tabs">
-                    <button class="scenario-tab active" onclick="switchScenario('nosite')" id="tab-nosite">1. Pas de site (L'invisible)</button>
+                    <button class="scenario-tab active" onclick="switchScenario('nosite')" id="tab-nosite">1. Prospect sans site (L'invisible)</button>
                     <button class="scenario-tab" onclick="switchScenario('slowsite')" id="tab-slowsite">2. Site existant lent / obsolète</button>
-                    <button class="scenario-tab" onclick="switchScenario('cocreate')" id="tab-cocreate">3. Relance / Solution Budget Serré</button>
                 </div>
 
-                <!-- Active Scenario Context -->
+                <!-- Active Scenario Profile -->
                 <div id="scen-nosite" class="scenario-content active">
                     <div class="target-profile">
                         <div style="font-size: 1.5rem;">🎯</div>
                         <div>
                             <h4>Cible : L'invisible (Pas de site web)</h4>
-                            <p>Le prospect n'apparaît nulle part en dehors de sa fiche Google Maps (si elle existe). Il s'appuie sur le bouche-à-oreille et ne voit pas l'intérêt d'un site.</p>
+                            <p>Le prospect n'est pas trouvable sur le web à part sa fiche Google Maps (souvent incomplète). Il pense ne pas avoir besoin de site vitrine.</p>
                         </div>
                     </div>
                 </div>
@@ -581,29 +619,19 @@
                     <div class="target-profile" style="border-left-color: var(--color-orange);">
                         <div style="font-size: 1.5rem;">⚡</div>
                         <div>
-                            <h4>Cible : Le train de retard (Site existant lent ou non responsive)</h4>
-                            <p>Le prospect a un site obsolète, lent (plus de 4s de chargement mobile), souvent non sécurisé (pas de HTTPS), conçu il y a plusieurs années.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="scen-cocreate" class="scenario-content">
-                    <div class="target-profile" style="border-left-color: #10b981;">
-                        <div style="font-size: 1.5rem;">🤝</div>
-                        <div>
-                            <h4>Cible : Négociation de budget (Règle de co-création)</h4>
-                            <p>Le prospect est intéressé par une vitrine mais exprime une objection forte liée à sa trésorerie actuelle. On lui propose de définir lui-même son enveloppe.</p>
+                            <h4>Cible : Le train de retard (Site obsolète / lent / non sécurisé)</h4>
+                            <p>Le prospect a un vieux site web (souvent fait par son entourage ou une agence il y a 8 ans). Il se charge mal sur smartphone et nuit à son image.</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Script Personalization Builder -->
                 <div class="script-builder">
-                    <h4 style="margin-bottom: 15px; font-family: var(--font-heading); font-size: 1.1rem;">Personnalisez la conversation en direct :</h4>
+                    <h4 style="margin-bottom: 15px; font-family: var(--font-heading); font-size: 1.1rem;">Remplir les informations du prospect :</h4>
                     
                     <div class="builder-inputs">
                         <div class="builder-field">
-                            <label for="p-name">Nom du Dirigeant</label>
+                            <label for="p-name">Nom du Dirigeant / Interlocuteur</label>
                             <input type="text" id="p-name" value="Jean" oninput="generatePitches()">
                         </div>
                         <div class="builder-field">
@@ -615,12 +643,22 @@
                             <input type="text" id="p-craft" value="couvreur" oninput="generatePitches()">
                         </div>
                         <div class="builder-field">
-                            <label for="p-city">Ville</label>
+                            <label for="p-city">Ville d'activité</label>
                             <input type="text" id="p-city" value="Angers" oninput="generatePitches()">
                         </div>
                         <div class="builder-field" id="speed-field-wrapper" style="display: none;">
-                            <label for="p-speed">Vitesse actuelle mesurée (s)</label>
+                            <label for="p-speed">Vitesse de chargement mesurée (secondes)</label>
                             <input type="number" id="p-speed" value="4.5" step="0.1" oninput="generatePitches()">
+                        </div>
+                    </div>
+
+                    <!-- Angle Selector -->
+                    <div class="angle-container">
+                        <div class="angle-title">Sélectionner l'angle d'attaque de l'appel :</div>
+                        <div class="angle-buttons">
+                            <button class="angle-btn active" id="angle-business" onclick="switchAngle('business')">Angle 1 : Perte Business & Concurrents (Manque à gagner)</button>
+                            <button class="angle-btn" id="angle-speed" onclick="switchAngle('speed')">Angle 2 : Vitesse Mobile & Performance (Technique simple)</button>
+                            <button class="angle-btn" id="angle-trust" onclick="switchAngle('trust')">Angle 3 : Confiance Locale & Proximité (Zéro abonnement)</button>
                         </div>
                     </div>
 
@@ -628,75 +666,92 @@
                     <div style="position: relative; margin-top: 15px;">
                         <button class="copy-btn" id="btn-copy" onclick="copyPitch()">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                            <span>Copier le script d'appel</span>
+                            <span>Copier le script</span>
                         </button>
-                        <div class="pitch-box" id="pitch-output">Chargement du script...</div>
+                        <div class="pitch-box" id="pitch-output">Génération du script oral...</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 3: OBJECTIONS AU TELEPHONE -->
+        <!-- SECTION 3: TRAITEMENT DES OBJECTIONS AU TELEPHONE -->
         <section id="sec-objections" class="section-container" style="display: none;">
             <div class="glass-card">
-                <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> Réponses aux Objections au Téléphone (Appels à Froid)</h3>
-                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 25px;">Guide rapide pour surmonter les objections courantes lors d'un appel à froid.</p>
+                <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> Réduire les Objections en Direct au Téléphone</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 25px;">Cliquez sur l'objection entendue pour obtenir la réponse fluide à réciter en direct.</p>
 
                 <!-- Objection 1 -->
                 <div class="objection-item" onclick="toggleObjection(this)">
                     <button class="objection-header">
-                        <span>1. "Je n'ai pas le temps, rappelez plus tard."</span>
+                        <span>1. "Je n'ai pas le temps, je suis occupé / sur un chantier."</span>
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                     </button>
                     <div class="objection-body">
-                        <p><strong>Poste de tir :</strong> Ne forcez pas mais proposez un créneau extrêmement court et précis pour désamorcer.</p>
+                        <p><strong>Règle d'or :</strong> Ne pas forcer mais proposer une action rapide sans effort de leur part.</p>
                         <br>
-                        <p><em>« Je comprends tout à fait, vous êtes en plein chantier / travail. Je serai très bref : je veux juste vous envoyer une maquette conceptuelle gratuite de 0.8s que j'ai préparée pour votre entreprise. Est-ce que je peux vous l'envoyer par SMS ou email, et on s'appelle juste 5 minutes mardi à 18h pour que vous me disiez ce que vous en pensez ? »</em></p>
+                        <p><em>« Je comprends tout à fait <mark class="p-name-ob">Jean</mark>, vous êtes sur le terrain. Je serai très bref : je voulais simplement vous envoyer un prototype conceptuel gratuit qu'on a déjà préparé pour <mark class="p-company-ob">Durand Rénovation</mark> afin de vous montrer le rendu. »</em></p>
+                        <br>
+                        <p><em>« Est-ce que je peux vous glisser le lien d'aperçu par SMS, et on s'appelle juste 5 minutes mardi à 18h en fin de journée pour que vous me disiez ce que vous en pensez ? »</em></p>
                     </div>
                 </div>
 
                 <!-- Objection 2 -->
                 <div class="objection-item" onclick="toggleObjection(this)">
                     <button class="objection-header">
-                        <span>2. "Mon bouche-à-oreille me suffit largement, pas besoin de site."</span>
+                        <span>2. "Je n'ai pas besoin de site web, le bouche-à-oreille me suffit."</span>
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                     </button>
                     <div class="objection-body">
-                        <p><strong>Poste de tir :</strong> Valider le bouche-à-oreille et montrer que le site rassure les clients recommandés avant l'appel.</p>
+                        <p><strong>Règle d'or :</strong> Valider la qualité de leur bouche-à-oreille et expliquer que le site sécurise ces recommandations.</p>
                         <br>
-                        <p><em>« C'est parfait, c'est que votre travail est excellent. Justement, saviez-vous que même avec le bouche-à-oreille, plus de 80% des gens recommandés tapent votre nom sur Google avant de vous appeler pour vérifier vos réalisations ? »</em></p>
+                        <p><em>« C'est parfait, c'est la preuve de la qualité de vos chantiers. Justement, saviez-vous que même avec le bouche-à-oreille, plus de 80% des personnes à qui l'on vous conseille vont taper le nom <mark class="p-company-ob">Durand Rénovation</mark> sur Google pour voir ce que vous faites avant de vous appeler ? »</em></p>
                         <br>
-                        <p><em>« Si vous êtes invisible ou si le site actuel n'est pas pro, ils hésitent. Une vitrine propre et ultra-rapide vient simplement sécuriser ce bouche-à-oreille pour transformer la recommandation en contrat signé. C'est dommage de laisser passer ces chantiers. »</em></p>
+                        <p><em>« Si vous êtes invisible ou si votre site est dépassé, certains hésitent et appellent ailleurs. Notre but, c'est simplement de rassurer à 100% ces clients pour qu'ils vous signent le contrat sans hésiter. »</em></p>
                     </div>
                 </div>
 
                 <!-- Objection 3 -->
                 <div class="objection-item" onclick="toggleObjection(this)">
                     <button class="objection-header">
-                        <span>3. "J'ai déjà un site internet wix / fait maison gratuitement."</span>
+                        <span>3. "Je peux le faire moi-même sur Wix / WordPress gratuitement."</span>
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                     </button>
                     <div class="objection-body">
-                        <p><strong>Poste de tir :</strong> Expliquez la différence technique fondamentale entre un site gratuit (lent et invisible) et un site sur-mesure (générateur de contacts).</p>
+                        <p><strong>Règle d'or :</strong> Ne pas critiquer les outils mais pointer la lenteur sur mobile et l'invisibilité SEO locale.</p>
                         <br>
-                        <p><em>« C'est une très bonne initiative d'avoir démarré avec ça. Cependant, ces plateformes gratuites génèrent des sites très lourds et lents à charger sur mobile. Google pénalise cette lenteur et n'affiche pas ces sites dans les recherches locales. »</em></p>
+                        <p><em>« C'est vrai, ces outils permettent de mettre des images rapidement. Mais le problème, c'est qu'ils génèrent des pages très lourdes et lentes à charger sur mobile. Google pénalise cette lenteur et n'affiche pas ces sites sur les recherches de <mark class="p-craft-ob">couvreur</mark> à <mark class="p-city-ob">Angers</mark>. »</em></p>
                         <br>
-                        <p><em>« Nous concevons des vitrines web ultra-rapides, optimisées pour que les habitants de votre ville vous trouvent en premier sur Google lorsqu'ils cherchent votre métier. Un site gratuit que personne ne trouve est malheureusement inutile. »</em></p>
+                        <p><em>« De notre côté, Joseph s'occupe de la structure pour que Google vous remonte en premier, et Michel s'occupe du code propre pour que le site s'affiche en moins d'une seconde. Un site gratuit que personne ne trouve est malheureusement une perte de temps. »</em></p>
                     </div>
                 </div>
 
                 <!-- Objection 4 -->
                 <div class="objection-item" onclick="toggleObjection(this)">
                     <button class="objection-header">
-                        <span>4. "J'ai déjà une agence et je paye un abonnement."</span>
+                        <span>4. "J'ai déjà une agence web avec un contrat/abonnement."</span>
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                     </button>
                     <div class="objection-body">
-                        <p><strong>Poste de tir :</strong> Mettre en avant le modèle sans abonnement de Vintage Digital (propriété totale).</p>
+                        <p><strong>Règle d'or :</strong> Opposer leur modèle locatif captif à notre modèle de propriété totale sans abonnement.</p>
                         <br>
-                        <p><em>« C'est bien d'avoir un partenaire. Justement, notre approche est différente : nous ne croyons pas aux abonnements mensuels captifs à 150 € ou 200 € par mois qui n'en finissent pas. »</em></p>
+                        <p><em>« C'est une bonne chose d'avoir un site en ligne. Mais est-ce que vous n'en avez pas marre de payer un abonnement de 150 € ou 200 € par mois à cette agence ? »</em></p>
                         <br>
-                        <p><em>« Chez nous, vous payez uniquement la création. Le site vous appartient à 100 % à vie sans aucun frais mensuel récurrent. Cela vous permet d'économiser des milliers d'euros sur la durée pour un site techniquement plus performant. »</em></p>
+                        <p><em>« Chez Vintage Digital, on fonctionne différemment : vous payez la création de votre site une seule fois, et il vous appartient à vie à 100 %. Nous ne prélevons aucun abonnement récurrent mensuel pour la maintenance car notre code est ultra-propre et n'en a pas besoin. C'est des milliers d'euros d'économisés pour vous. »</em></p>
+                    </div>
+                </div>
+
+                <!-- Objection 5 -->
+                <div class="objection-item" onclick="toggleObjection(this)">
+                    <button class="objection-header">
+                        <span>5. "Laissez-moi votre email ou rappelez-moi dans 6 mois."</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="objection-body">
+                        <p><strong>Règle d'or :</strong> C'est une esquive. Réengagez sur l'hameçon du prototype visuel gratuit.</p>
+                        <br>
+                        <p><em>« Je peux tout à fait vous envoyer un mail explicatif. Cependant, un long mail ne remplacera pas un aperçu concret. J'ai déjà une maquette de page d'accueil personnalisée prête pour <mark class="p-company-ob">Durand Rénovation</mark>. »</em></p>
+                        <br>
+                        <p><em>« Je vous l'envoie simplement par SMS pour que vous la consultiez en un clic sur votre téléphone quand vous aurez 2 minutes ce soir. On s'appelle rapidement la semaine prochaine juste pour avoir votre avis ? »</em></p>
                     </div>
                 </div>
             </div>
@@ -706,6 +761,7 @@
     <script>
         let currentSection = 'dash';
         let activeScenario = 'nosite';
+        let activeAngle = 'business';
 
         function showSection(sectionId) {
             document.querySelectorAll('.sidebar .nav-item').forEach(item => item.classList.remove('active'));
@@ -716,22 +772,20 @@
             
             const title = document.getElementById('page-title');
             if (sectionId === 'dash') {
-                title.textContent = "Méthodologie d'Appel à Froid (Cold Calling)";
+                title.textContent = "Méthode de Téléprospection (Appels à Froid)";
             } else if (sectionId === 'pitches') {
-                title.textContent = "Scripts d'Appel Personnalisés";
+                title.textContent = "Scripts d'Appels Personnalisés";
                 generatePitches();
             } else if (sectionId === 'objections') {
                 title.textContent = "Traitement des Objections au Téléphone";
+                updateObjectionPlaceholders();
             }
             currentSection = sectionId;
         }
 
         function switchScenario(scenario) {
-            document.querySelectorAll('.scenario-tab').forEach(tab => {
-                if (tab.id === 'tab-nosite' || tab.id === 'tab-slowsite' || tab.id === 'tab-cocreate') {
-                    tab.classList.remove('active');
-                }
-            });
+            document.getElementById('tab-nosite').classList.remove('active');
+            document.getElementById('tab-slowsite').classList.remove('active');
             document.getElementById('tab-' + scenario).classList.add('active');
             
             document.querySelectorAll('.scenario-content').forEach(scen => {
@@ -740,7 +794,6 @@
             });
             document.getElementById('scen-' + scenario).classList.add('active');
             
-            // Show speed input field only for slowsite
             const speedField = document.getElementById('speed-field-wrapper');
             if (scenario === 'slowsite') {
                 speedField.style.display = 'block';
@@ -749,6 +802,16 @@
             }
             
             activeScenario = scenario;
+            generatePitches();
+        }
+
+        function switchAngle(angle) {
+            document.getElementById('angle-business').classList.remove('active');
+            document.getElementById('angle-speed').classList.remove('active');
+            document.getElementById('angle-trust').classList.remove('active');
+            
+            document.getElementById('angle-' + angle).classList.add('active');
+            activeAngle = angle;
             generatePitches();
         }
 
@@ -762,14 +825,25 @@
             let text = '';
 
             if (activeScenario === 'nosite') {
-                text = `« Bonjour <mark>${name}</mark> ? Je suis [Votre Prénom] de l'agence web Vintage Digital.\n\nJe me permets de vous contacter car j'ai mené une rapide étude de visibilité sur les <mark>${craft}s</mark> basés à <mark>${city}</mark>. J'ai vu que vous aviez une excellente réputation locale mais pas encore de site vitrine officiel.\n\nActuellement, nos outils indiquent qu'il y a environ 300 recherches locales par mois d'habitants à <mark>${city}</mark> cherchant un <mark>${craft}</mark>. En l'absence de site internet, tous ces appels partent directement chez vos concurrents.\n\nPour vous montrer ce qui est possible, j'ai préparé une maquette conceptuelle gratuite de page d'accueil pour <mark>${company}</mark> afin de vous montrer comment capter ces demandes.\n\nEst-ce que vous auriez 10 minutes cette semaine pour qu'on en discute tranquillement par téléphone ? »`;
+                if (activeAngle === 'business') {
+                    text = `« Allo bonjour <mark>${name}</mark> ? Je suis [Votre Prénom] de l'agence Vintage Digital à côté de chez vous.\n\nJe vous appelle car j'ai mené une étude locale sur la visibilité des <mark>${craft}s</mark> basés à <mark>${city}</mark>. J'ai vu que vous aviez une excellente réputation locale mais aucune présence en ligne en dehors de Maps.\n\nActuellement, il y a plus de 300 recherches par mois d'habitants de <mark>${city}</mark> cherchant précisément un <mark>${craft}</mark> sur Google. Comme vous n'avez pas de vitrine, tous ces appels partent directement chez vos concurrents qui apparaissent en premier.\n\nPour vous montrer ce qui est possible, j'ai conçu un prototype visuel gratuit de site pour <mark>${company}</mark> afin de capter ces chantiers.\n\nEst-ce que vous auriez 10 minutes cette semaine pour qu'on en discute par téléphone et que je vous envoie l'aperçu ? »`;
+                } else if (activeAngle === 'speed') {
+                    text = `« Bonjour <mark>${name}</mark> ? Je suis [Votre Prénom] de Vintage Digital.\n\nJe me permets de vous contacter car j'ai vu que <mark>${company}</mark> n'avait pas encore de site internet officiel. Aujourd'hui, plus de 80% des clients locaux font leurs recherches sur smartphone avant de contacter un artisan.\n\nNous, notre spécialité chez Vintage Digital, c'est de concevoir des sites vitrines ultra-légers qui chargent en moins de 0.8 seconde pour capter immédiatement le client sur mobile, sans qu'il ait besoin d'attendre.\n\nPour que vous voyiez ce que ça donne, j'ai préparé un concept visuel gratuit et ultra-rapide aux couleurs de <mark>${company}</mark>.\n\nEst-ce que je peux vous envoyer le lien par SMS et on s'appelle 10 minutes ce jeudi pour regarder ? »`;
+                } else {
+                    text = `« Bonjour <mark>${name}</mark> ? Je suis [Votre Prénom] de Vintage Digital.\n\nJe vous appelle car en faisant le tour des <mark>${craft}s</mark> sur <mark>${city}</mark>, j'ai remarqué que vous n'aviez pas de site vitrine. Souvent, les artisans refusent de faire un site par peur des abonnements captifs d'agences à 150€/mois.\n\nNotre modèle chez Vintage Digital est différent : nous faisons de la co-création de site sur-mesure. Vous payez une seule fois la création, et le site vous appartient à 100% à vie, sans aucun abonnement récurrent.\n\nJ'ai conçu un aperçu gratuit de site pour <mark>${company}</mark>. Est-ce que vous auriez 10 minutes pour que je vous l'envoie et qu'on en discute au téléphone ? »`;
+                }
             } else if (activeScenario === 'slowsite') {
-                text = `« Bonjour <mark>${name}</mark> ? Je suis [Votre Prénom] de l'agence Vintage Digital.\n\nJe vous contacte car j'ai réalisé une analyse technique de votre site internet actuel. J'ai constaté un point bloquant majeur : votre page met plus de <mark>${speed} secondes</mark> à se charger sur smartphone.\n\nD'après les critères officiels de Google, 1 visiteur sur 3 quitte un site s'il charge en plus de 3 secondes, ce qui pénalise fortement votre visibilité et fait fuir vos clients potentiels sur mobile.\n\nPour vous montrer comment corriger cela, j'ai créé un prototype de site ultra-rapide (moins de 0.8s) pour <mark>${company}</mark>, conçu spécifiquement pour convertir les visiteurs mobiles en appels téléphoniques.\n\nEst-ce qu'on peut planifier un rapide échange de 10 minutes cette semaine pour que je vous présente cela ? »`;
-            } else if (activeScenario === 'cocreate') {
-                text = `« Bonjour <mark>${name}</mark>, c'est [Votre Prénom] de Vintage Digital.\n\nJe reviens vers vous par rapport à notre précédent échange sur la création de votre vitrine web pour <mark>${company}</mark>. Je sais que la trésorerie est un sujet sensible actuellement pour vous.\n\nChez Vintage Digital, on fonctionne avec une règle de co-création budgétaire : c'est vous qui me fixez l'enveloppe de départ avec laquelle vous êtes confortable. \n\nDe notre côté, nous adaptons le projet pour rentrer dans cette enveloppe, sans aucun abonnement récurrent mensuel, tout en vous garantissant le même niveau de performance et de référencement sur Google.\n\nEst-ce que vous êtes disponible 10 minutes au téléphone cette semaine pour que l'on définisse ensemble ce budget de départ confortable pour vous ? »`;
+                if (activeAngle === 'business') {
+                    text = `« Bonjour <mark>${name}</mark> ? Je suis [Votre Prénom] de Vintage Digital.\n\nJe vous appelle car j'ai fait une analyse de visibilité sur votre site <mark>${company}</mark>. Votre travail a l'air de grande qualité, mais j'ai constaté que votre site est extrêmement ralenti sur mobile : il met plus de <mark>${speed} secondes</mark> à se charger.\n\nGoogle indique que si un site dépasse les 3 secondes, plus d'un visiteur sur trois quitte la page immédiatement pour aller chez un concurrent. Vous perdez donc directement des clients locaux à <mark>${city}</mark> à cause de ce frein technique.\n\nJ'ai conçu un prototype visuel modernisé et ultra-rapide de 0.8s pour <mark>${company}</mark> pour corriger cela.\n\nEst-ce qu'on peut se caler un appel rapide de 10 minutes cette semaine pour que je vous le montre ? »`;
+                } else if (activeAngle === 'speed') {
+                    text = `« Allo bonjour <mark>${name}</mark> ? [Votre Prénom] de l'agence Vintage Digital.\n\nJe me permets de vous contacter car notre ingénieur web, Michel, a testé les performances mobiles du site de <mark>${company}</mark> sur l'outil officiel de Google. Le site affiche un temps de chargement de <mark>${speed} secondes</mark> sur smartphone.\n\nGoogle pénalise cette lenteur et dégrade votre classement de recherche locale. Notre spécialité, c'est de concevoir des sites vitrines propres en code pur qui chargent en moins de 0.8 seconde (PageSpeed 100/100).\n\nJ'ai préparé une maquette d'accueil ultra-rapide et modernisée pour <mark>${company}</mark> pour vous montrer la différence technique.\n\nEst-ce que vous auriez 10 minutes pour qu'on en discute par téléphone et que je vous envoie le lien ? »`;
+                } else {
+                    text = `« Allo bonjour <mark>${name}</mark> ? [Votre Prénom] de Vintage Digital.\n\nJe vous contacte au sujet du site internet de <mark>${company}</mark>. Je suppose que vous payez des frais de maintenance ou un abonnement à une agence pour ce site actuellement ?\n\nChez Vintage Digital, nous développons des sites sans aucun abonnement récurrent. Le site vous appartient à 100% à vie dès sa livraison, ce qui vous libère de ces coûts d'agences inutiles.\n\nJ'ai préparé un concept visuel gratuit de site ultra-rapide pour <mark>${company}</mark>. Est-ce qu'on peut prendre 10 minutes par téléphone pour que je vous l'envoie et vous présente notre formule ? »`;
+                }
             }
 
             document.getElementById('pitch-output').innerHTML = text;
+            updateObjectionPlaceholders();
         }
 
         function copyPitch() {
@@ -787,6 +861,18 @@
                     btn.classList.remove('copied');
                 }, 2000);
             });
+        }
+
+        function updateObjectionPlaceholders() {
+            const name = document.getElementById('p-name').value || '[Prénom]';
+            const company = document.getElementById('p-company').value || '[Entreprise]';
+            const craft = document.getElementById('p-craft').value || '[métier]';
+            const city = document.getElementById('p-city').value || '[Ville]';
+
+            document.querySelectorAll('.p-name-ob').forEach(el => el.textContent = name);
+            document.querySelectorAll('.p-company-ob').forEach(el => el.textContent = company);
+            document.querySelectorAll('.p-craft-ob').forEach(el => el.textContent = craft);
+            document.querySelectorAll('.p-city-ob').forEach(el => el.textContent = city);
         }
 
         function toggleObjection(element) {
